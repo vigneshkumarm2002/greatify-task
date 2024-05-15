@@ -3,7 +3,7 @@ import Header from "./header";
 import SlideOvers from "./slideOver";
 
 const ManageUniversity = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const tableData = [
     {
       sno: 1,

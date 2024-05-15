@@ -77,13 +77,16 @@ export const Sidebar = ({ sideBarResize, setSideBarResize }) => {
       </div>
 
       <div>
-        <div className="h-20 border-b border-[#00DC46] flex items-center justify-center">
+        <a
+          href="/"
+          className="h-20 border-b border-[#00DC46] flex items-center justify-center"
+        >
           <img
             src={!sideBarResize ? Logo : SmallLogo}
             alt="logo"
             className="h-7 w-auto"
           />
-        </div>
+        </a>
 
         <div className="flex flex-col w-full  gap-4  pt-8 overflow-hidden">
           {menuItems?.map((item, index) => (

@@ -10,6 +10,7 @@ import {
 import Dashboard from "./components/dashboard";
 import { useState } from "react";
 import ManageUniversity from "./components/manageUniversity";
+import Template from "./components/template";
 
 function App() {
   const [sideBarResize, setSideBarResize] = useState(
@@ -31,6 +32,21 @@ function App() {
               exact
               path="/manage-university"
               element={<ManageUniversity />}
+            />
+            <Route
+              exact
+              path="/manage-course-plan"
+              element={<Template title={"Manage Course Plan"} />}
+            />
+            <Route
+              exact
+              path="/configure-curriculam"
+              element={<Template title={"Configure Curriculam"} />}
+            />
+            <Route
+              exact
+              path="/manage-employers"
+              element={<Template title={"Manage Employers"} />}
             />
           </Routes>
         </div>

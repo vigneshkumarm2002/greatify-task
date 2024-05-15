@@ -1,6 +1,7 @@
 import React from "react";
 
 import ProgressChart from "./progressChart";
+import { Tooltip } from "react-tooltip";
 
 const ProgressDetails = () => {
   const varients = [
@@ -76,6 +77,7 @@ const ProgressDetails = () => {
               <p className="text-lg font-medium text-[#00373A]">{item?.name}</p>
               <p className="text-sm text-gray-400 ">ID: {item?.ID}</p>
             </div>
+
             <ProgressChart
               smsCount={item?.sms}
               whatsappCount={item?.WhatsApp}

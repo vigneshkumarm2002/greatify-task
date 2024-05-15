@@ -11,6 +11,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/16/solid";
 import { useLocation } from "react-router-dom";
+import { Tooltip } from "react-tooltip";
 
 export const Sidebar = ({ sideBarResize, setSideBarResize }) => {
   const menuItems = [
@@ -30,15 +31,15 @@ export const Sidebar = ({ sideBarResize, setSideBarResize }) => {
       href: "/manage-course-plan",
     },
     {
-      name: "Configure Curricular ",
+      name: "Configure Curriculam ",
       icon: AdjustmentsHorizontalIcon,
-      href: "/configure-curricular",
+      href: "/configure-curriculam",
     },
 
     {
-      name: "Manage Employeess",
+      name: "Manage Employers",
       icon: NewspaperIcon,
-      href: "/manage-employeess",
+      href: "/manage-employers",
     },
   ];
 
@@ -86,22 +87,36 @@ export const Sidebar = ({ sideBarResize, setSideBarResize }) => {
 
         <div className="flex flex-col w-full  gap-4  pt-8 overflow-hidden">
           {menuItems?.map((item, index) => (
-            <div className=" flex w-full justify-between pl-4 items-center">
+            <div className=" flex w-full justify-between pl-4 items-center ">
               <a
                 href={item?.href}
                 className={`flex ${
                   currentLocation == item?.href
                     ? "text-white"
                     : "hover:text-white text-gray-300 "
-                }  items-center text-sm p-2 whitespace-nowrap`}
+                }  items-center text-sm p-2 whitespace-nowrap `}
               >
                 {item.icon && (
                   <item.icon
+                    data-tooltip-id={item?.name}
+                    data-tooltip-content={item?.name}
                     className={`h-6 w-6 mr-2 inline-block ${
                       currentLocation == item?.href
                         ? "text-[#00DC46]"
-                        : " hover:text-white text-gray-300"
+                        : " hover:text-white text-gray-300 outline-none border-none"
                     } `}
+                  />
+                )}
+                {sideBarResize && (
+                  <Tooltip
+                    id={item?.name}
+                    place="right"
+                    style={{
+                      backgroundColor: "rgb(0, 255, 30)",
+                      fontWeight: "500",
+                      color: "#222",
+                      fontSize: "14px",
+                    }}
                   />
                 )}
                 {!sideBarResize && item?.name}
@@ -117,7 +132,23 @@ export const Sidebar = ({ sideBarResize, setSideBarResize }) => {
       <div className="h-[150px] ">
         <div className=" border-t border-[#00DC46] flex pl-4 text-white">
           <p className="flex items-center text-sm px-2 py-4 text-gray-300 hover:text-white cursor-pointer">
-            <ArrowRightStartOnRectangleIcon className="h-6 w-6 mr-2 inline-block" />{" "}
+            <ArrowRightStartOnRectangleIcon
+              data-tooltip-id="my-1tooltip"
+              data-tooltip-content={"Log Out"}
+              className="h-6 w-6 mr-2 inline-block"
+            />{" "}
+            {sideBarResize && (
+              <Tooltip
+                id="my-1tooltip"
+                place="right"
+                style={{
+                  backgroundColor: "rgb(0, 255, 30)",
+                  fontWeight: "500",
+                  color: "#222",
+                  fontSize: "14px",
+                }}
+              />
+            )}
             {!sideBarResize && "Logout"}
           </p>
         </div>

@@ -47,11 +47,22 @@ const SlideOvers = ({ open, close }) => {
     "Inventory management": false,
   });
 
+  const [selectAll, setSelectAll] = useState(false);
+
   const handleCheckboxChange = (itemName) => {
     setChecklistItems((prevItems) => ({
       ...prevItems,
       [itemName]: !prevItems[itemName],
     }));
+  };
+
+  const handleSelectAllChange = () => {
+    setSelectAll(!selectAll);
+    const updatedItems = {};
+    for (const itemName in checklistItems) {
+      updatedItems[itemName] = !selectAll;
+    }
+    setChecklistItems(updatedItems);
   };
 
   return (
@@ -83,7 +94,7 @@ const SlideOvers = ({ open, close }) => {
               >
                 <DialogPanel className="relative pointer-events-auto overflow-y-auto w-[650px] bg-white progressScroll shadow-md">
                   <DialogTitle className=" flex justify-between sticky h-[60px] w-full top-0 left-0 bg-white z-10 p-4 border-b border-gray-300">
-                    <p className="text-lg font-medium text-[#00373A]">
+                    <p className="text-xl font-medium text-[#00373A]">
                       Invite University
                     </p>
 
@@ -169,16 +180,17 @@ const SlideOvers = ({ open, close }) => {
                     </div>
 
                     <div>
-                      <div className="flex justify-between">
+                      <div className="flex justify-between items-center">
                         <p className="text-[#00373A] text-lg font-medium">
                           Activate Modules
                         </p>
                         <div className="flex items-center">
                           <input
+                            onChange={handleSelectAllChange}
                             type="checkbox"
                             id="Select all"
-                            checked={false}
-                            className="mr-2"
+                            checked={selectAll}
+                            className="mr-2 accent-green-600"
                           />
                           <label
                             htmlFor="Select all"
@@ -197,7 +209,7 @@ const SlideOvers = ({ open, close }) => {
                                 id={itemName}
                                 checked={checked}
                                 onChange={() => handleCheckboxChange(itemName)}
-                                className="mr-2"
+                                className="mr-2 accent-green-600 "
                               />
                               <label
                                 htmlFor={itemName}
